@@ -17,22 +17,6 @@
 		<th><%= t("action") %></th>
   </tr>
 	<tbody>
-    	<% @pages.each do |page| %>
-		<tr class="<%= cycle('even', 'odd') %>" id="<%= dom_id page %>">
-			<td>
-				<%= page.title %>
-			</td>
-			<td>
-				<%= link_to page.link, page.link %>
-			</td>
-			<td>
-			  <%= icon('tick') if page.visible %>
-			</td>
-			<td>
-        <%= link_to_edit page %> &nbsp;
-        <%= link_to_delete page %>
-	    </td>
-		</tr>
-		<% end %>
+    <%= render :partial => "page_row", :collection => @pages, :as => :page %>
 	</tbody>
 </table>

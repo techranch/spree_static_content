@@ -5,13 +5,13 @@
       <%= f.text_field :title, :class => 'fullwidth title' %>
       <%= f.error_message_on :title %>
     <% end %>
-    
+
     <%= f.field_container :slug do %>
       <%= f.label :slug, t(:slug) %> <span class="required">*</span><br />
       <%= f.text_field :slug, :class => 'fullwidth title' %>
       <%= f.error_message_on :slug %>
     <% end %>
-    
+
     <%= f.field_container :body do %>
       <%= f.label :body, t(:body) %><br />
       <%= f.text_area :body, {:class => 'fullwidth'} %>
@@ -23,21 +23,25 @@
       <%= f.text_field :meta_title, :class => 'fullwidth title' %>
       <%= f.error_message_on :meta_title %>
     <% end %>
-    
+
     <%= f.field_container :meta_keywords do %>
       <%= f.label :meta_keywords, t(:meta_keywords) %><br />
       <%= f.text_field :meta_keywords, :class => 'fullwidth title' %>
       <%= f.error_message_on :meta_keywords %>
     <% end %>
-    
+
     <%= f.field_container :meta_description do %>
       <%= f.label :meta_description, t(:meta_description) %><br />
       <%= f.text_field :meta_description, :class => 'fullwidth title' %>
       <%= f.error_message_on :meta_description %>
     <% end %>
-    
+
   </div>
   <div class="right">
+    <%= f.field_container :parent_id do %>
+      <%= f.label :parent_id, t(:parent_page) %>
+      <%= f.select :parent_id, options_from_collection_for_select(@pages, 'id', 'title') %>
+    <% end %>
     <%= f.field_container :layout do %>
       <%= f.label :layout, t(:layout) %><br />
       <%= f.text_field :layout, :class => 'fullwidth title' %>
@@ -52,7 +56,7 @@
       <%= f.label :position, t(:position) %><br />
       <%= f.number_field :position, :min => 0 %>
     <% end %>
-    
+
     <ul id="static_page_options">
       <li>
         <%= f.check_box :show_in_sidebar %>
@@ -67,10 +71,10 @@
         <%= f.label :show_in_footer %>
       </li>
       <li>
-        <%= f.check_box :visible %>        
+        <%= f.check_box :visible %>
         <%= f.label :visible %>
       </li>
     </ul>
-    
+
   </div>
 </div>

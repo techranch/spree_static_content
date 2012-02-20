@@ -4,7 +4,11 @@ class Spree::Page < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of [:slug, :body], :if => :not_using_foreign_link?
 
+  belongs_to :parent, :foreign_key => 'parent_id',  :class_name => "Spree::Page"
+  has_many :children,  :foreign_key => 'parent_id',:class_name => "Spree::Page"
+
   scope :visible, where(:visible => true)
+  scope :top_level, where(:parent_id => nil)
   scope :header_links, where(:show_in_header => true).visible
   scope :footer_links, where(:show_in_footer => true).visible
   scope :sidebar_links, where(:show_in_sidebar => true).visible
@@ -19,7 +23,10 @@ class Spree::Page < ActiveRecord::Base
   end
 
   def link
-    foreign_link.blank? ? slug_link : foreign_link
+    if foreign_link.present?
+      return foreign_link
+    end
+    self.slug
   end
 
 private
@@ -37,6 +44,7 @@ private
     if not_using_foreign_link?
       self.slug = slug_link
       Rails.cache.delete('page_not_exist/' + self.slug)
+      self.children.each(&:save)
     end
     return true
   end
@@ -46,7 +54,10 @@ private
   end
 
   def slug_link
-    ensure_slash_prefix slug
+    page_slug = slug.split('/').last
+    url = ensure_slash_prefix(page_slug)
+    url.prepend(self.parent.slug) if self.parent.present?
+    url
   end
 
   def ensure_slash_prefix(str)

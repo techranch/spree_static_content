@@ -1,0 +1,21 @@
+<tr class="<%= cycle('even', 'odd') %>" id="<%= dom_id page %>">
+  <td>
+    <%= page.title %>
+  </td>
+  <td>
+    <%= link_to page.link, page.link %>
+  </td>
+  <td>
+    <%= icon('tick') if page.visible %>
+  </td>
+  <td>
+    <%= link_to_edit page %> &nbsp;
+    <%= link_to_delete page %>
+  </td>
+</tr>
+<% if page.children.any? %>
+  <tr>
+    <th colspan="4"><h5>Child Pages for: <%= page.title %></h5></th>
+  </tr>
+  <%= render :partial => "page_row", :collection => page.children, :as => :page %>
+<% end %>
