@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree_core', '>= 1.0.0.beta'
   s.add_dependency 'spree_auth', '>= 1.0.0.beta'
+  s.add_dependency 'tinymce-rails', '>= 3.4.8'
   s.add_dependency 'formtastic'
   s.add_development_dependency 'rspec-rails'
 end
