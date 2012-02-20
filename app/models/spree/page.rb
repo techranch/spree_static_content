@@ -14,12 +14,16 @@ class Spree::Page < ActiveRecord::Base
   scope :sidebar_links, where(:show_in_sidebar => true).visible
 
 
-  before_save :update_positions_and_slug
+  before_validation :update_positions_and_slug
 
   def initialize(*args)
     super(*args)
     last_page = Spree::Page.last
     self.position = last_page ? last_page.position + 1 : 0
+  end
+
+  def display_slug
+    slug.split('/').last
   end
 
   def link
@@ -54,7 +58,7 @@ private
   end
 
   def slug_link
-    page_slug = slug.split('/').last
+    page_slug = self.title.downcase.gsub(' ','-')
     url = ensure_slash_prefix(page_slug)
     url.prepend(self.parent.slug) if self.parent.present?
     url

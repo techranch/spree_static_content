@@ -4,7 +4,6 @@ describe Spree::Page do
   before(:each) do
     @page = Spree::Page.create(
     :title => 'test page',
-    :slug => 'test-page',
     :body => 'this is a test page'
     )
   end
@@ -20,8 +19,7 @@ describe Spree::Page do
   context "with parent page" do
     before do
       @parent_page = Spree::Page.create(
-        :title => 'test page',
-        :slug => 'parent-page',
+        :title => 'parent page',
         :body => 'this is a test page'
       )
       @page.parent = @parent_page
@@ -35,8 +33,7 @@ describe Spree::Page do
     context "with grandparent page" do
       before do
         @grandparent_page = Spree::Page.create(
-          :title => 'test page',
-          :slug => 'grandparent-page',
+          :title => 'grandparent page',
           :body => 'this is a test page'
         )
         @parent_page.parent = @grandparent_page
