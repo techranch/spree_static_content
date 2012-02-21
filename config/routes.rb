@@ -1,4 +1,4 @@
-Spree::Core::Engine.routes.append do
+SpreeStaticContent::Engine.routes.draw do
 
   namespace :admin do
     resources :pages
