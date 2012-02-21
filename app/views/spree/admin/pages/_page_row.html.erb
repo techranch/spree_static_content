@@ -18,4 +18,5 @@
     <th colspan="4"><h5>Child Pages for: <%= page.title %></h5></th>
   </tr>
   <%= render :partial => "page_row", :collection => page.children, :as => :page %>
+  <tr colspan="4"><th>&nbsp;</th></tr>
 <% end %>
