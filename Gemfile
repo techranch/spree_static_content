@@ -2,8 +2,6 @@ source :rubygems
 
 gem 'sqlite3'
 
-gem 'spree', :git => 'git://github.com/spree/spree.git'
-
 group :test do
   gem 'rspec-rails', '= 2.6.1'
   gem 'database_cleaner', '= 0.6.7'

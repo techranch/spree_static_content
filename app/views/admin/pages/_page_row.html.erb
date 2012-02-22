@@ -9,8 +9,8 @@
     <%= icon('tick') if page.visible %>
   </td>
   <td>
-    <%= link_to_edit page %> &nbsp;
-    <%= link_to_delete page %>
+    <%= link_to "Edit", edit_admin_page_path(page.id) %> &nbsp;
+    <%= link_to "Delete", admin_page_path(page.id), :method => :delete, :confirm => "Are you sure you want to delete the #{page.title}?" %>
   </td>
 </tr>
 <% if page.children.any? %>

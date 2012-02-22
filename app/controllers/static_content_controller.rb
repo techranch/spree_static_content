@@ -1,9 +1,8 @@
-class Spree::StaticContentController < Spree::BaseController
+class StaticContentController < Spree::BaseController
   caches_action :show
   layout :determine_layout
 
   def show
-    ap "showing static content"
     path = case params[:path]
     when Array
       '/' + params[:path].join("/")

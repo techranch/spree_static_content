@@ -1,0 +1,7 @@
+<li><%= link_to page.title, page.link %>
+<% if page.children.any? %>
+  <ul>
+    <%= render :partial => "static_content/static_content_list", :collection => page.children, :as => :page %>
+  </ul>
+<% end %>
+</li>

@@ -1,0 +1,10 @@
+<h1><%= t("static_content.editing_page") %></h1>
+<%= render "spree/shared/error_messages", :target => @page %>
+
+<%= form_for @page, :url => '/admin/pages' do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <p class="form-buttons" data-hook="buttons">
+    <%= button t(:update) %>
+    <%= t(:or) %> <%= link_to t(:cancel), '/admin/pages' %>
+  </p>
+<% end %>
