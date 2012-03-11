@@ -14,7 +14,7 @@ class StaticContentController < Spree::BaseController
 
     @page = Spree::Page.visible.find_by_slug(path)
     unless @page
-      render_404
+      return render_404
     end
     fresh_when etag: @page.updated_at, last_modified: @page.updated_at
     @page
