@@ -34,7 +34,7 @@
   <div class="right">
     <%= f.field_container :parent_id do %>
       <%= f.label :parent_id, t(:parent_page) %>
-      <%= f.select :parent_id, options_from_collection_for_select(@pages, 'id', 'title') %>
+      <%= f.select :parent_id, options_from_collection_for_select(@pages, 'id', 'title', :selected => @page.parent_id) %>
     <% end %>
     <%= f.field_container :layout do %>
       <%= f.label :layout, t(:layout) %><br />
