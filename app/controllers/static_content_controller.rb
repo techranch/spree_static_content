@@ -1,5 +1,4 @@
 class StaticContentController < Spree::BaseController
-  caches_page :index
   layout :determine_layout
 
   def show
@@ -16,7 +15,6 @@ class StaticContentController < Spree::BaseController
     unless @page
       return render_404
     end
-    fresh_when etag: @page.updated_at, last_modified: @page.updated_at
     @page
   end
 
